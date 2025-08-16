@@ -1,118 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Timer</title>
-    <style>
-        body { font-family: Arial, sans-serif; text-align: center;
-            background-image: url('photo1.jpg'); 
-            background-size: cover;
-            position: absolute;
-            top: 0%;
-            left: 40%;
-            transform: translate(-30%, -10%); 
-            width: 200px; 
-            height: 100px;  
-            background-color: rgba(74, 14, 255, 0.5);
-            text-align: center;
-            line-height: 100px;
-            font-size: 18px; 
-            font-weight: bold; 
-            color: white;
-             border-radius: 10px;
-        }
-        #stopwatch { font-size: 48px; margin: 20px; }
-        button { 
-            text-align: center;
-            width: 100px;
-            height: 60px;
-            font-size: 20px;
-        
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #000000;
-            transition: background-color 0.8s;
-            color: white;
-         }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Stopwatch</title>
+  <style>
+    /* Modern Google Font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    }
 
+    .timer-box {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      color: #fff;
+      width: 320px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
 
+    h1 {
+      margin-bottom: 15px;
+      font-weight: 600;
+      font-size: 28px;
+    }
 
-        .Timer {
-            justify-content: center;
-            align-items: center;
-            width: fit-content;
-            border: 1px solid #500aff;
-            border-radius: 10px;
-            padding: 20px;
-            background-color: rgba(47, 0, 255, 0.5)
-           
-        }
-    </style>
+    #stopwatch {
+      font-size: 40px;
+      margin: 20px 0;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-around;
+      margin: 20px 0;
+    }
+
+    button {
+      padding: 12px 18px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #fff;
+      transition: 0.3s;
+    }
+
+    #start { background: #28a745; }
+    #stop { background: #dc3545; }
+    #reset { background: #007bff; }
+
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    h6 {
+      margin-top: 15px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 14px;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+  </style>
 </head>
-
-
 <body>
-
-
-    
-        <h1>Stopwatch</h1>
-        <div class="Timer">
-        <div id="stopwatch">00:00:00.000</div>
-        <button id="start">Start</button>
-        <button id="stop">Stop</button>
-        <button id="reset">Reset</button>
-            <h6>Made By - Chaudhary Shad Khan</h6>
-        <a href="index.html" style="color: white;">Home</a>
+  <div class="timer-box">
+    <h1>Stopwatch</h1>
+    <div id="stopwatch">00:00:00.000</div>
+    <div class="buttons">
+      <button id="start">Start</button>
+      <button id="stop">Stop</button>
+      <button id="reset">Reset</button>
     </div>
-        <script>
-            let startTime, updatedTime, difference, tInterval;
-            let running = false;
-    
-            function startTimer() {
-                if (!running) {
-                    startTime = new Date().getTime();
-                    tInterval = setInterval(getShowTime, 1);
-                    running = true;
-                }
-            }
-    
-            function stopTimer() {
-                clearInterval(tInterval);
-                running = false;
-            }
-    
-            function resetTimer() {
-                clearInterval(tInterval);
-                running = false;
-                difference = 0;
-                document.getElementById('stopwatch').innerHTML = '00:00:00.000';
-            }
-    
-            function getShowTime() {
-                updatedTime = new Date().getTime();
-                difference = updatedTime - startTime;
-    
-                let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-                let seconds = Math.floor((difference % (1000 * 60)) / 1000);
-                let milliseconds = Math.floor((difference % 1000));
-    
-                hours = (hours < 10) ? "0" + hours : hours;
-                minutes = (minutes < 10) ? "0" + minutes : minutes;
-                seconds = (seconds < 10) ? "0" + seconds : seconds;
-                milliseconds = (milliseconds < 100) ? "0" + milliseconds : milliseconds;
-                milliseconds = (milliseconds < 10) ? "0" + milliseconds : milliseconds;
-    
-                document.getElementById('stopwatch').innerHTML = hours + ':' + minutes + ':' + seconds + '.' + milliseconds;
-            }
-    
-            document.getElementById('start').onclick = startTimer;
-            document.getElementById('stop').onclick = stopTimer;
-            document.getElementById('reset').onclick = resetTimer;
-        </script>
-    
+    <h6>Made By - Chaudhary Shad Khan</h6>
+    <a href="index.html">🏠 Home</a>
+  </div>
+
+  <script>
+    let startTime, updatedTime, difference, tInterval;
+    let running = false;
+
+    function startTimer() {
+      if (!running) {
+        startTime = new Date().getTime() - (difference || 0);
+        tInterval = setInterval(getShowTime, 1);
+        running = true;
+      }
+    }
+
+    function stopTimer() {
+      clearInterval(tInterval);
+      running = false;
+    }
+
+    function resetTimer() {
+      clearInterval(tInterval);
+      running = false;
+      difference = 0;
+      document.getElementById('stopwatch').innerHTML = '00:00:00.000';
+    }
+
+    function getShowTime() {
+      updatedTime = new Date().getTime();
+      difference = updatedTime - startTime;
+
+      let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((difference % (1000 * 60)) / 1000);
+      let milliseconds = Math.floor((difference % 1000));
+
+      hours = (hours < 10) ? "0" + hours : hours;
+      minutes = (minutes < 10) ? "0" + minutes : minutes;
+      seconds = (seconds < 10) ? "0" + seconds : seconds;
+      milliseconds = milliseconds.toString().padStart(3, "0");
+
+      document.getElementById('stopwatch').innerHTML = 
+        `${hours}:${minutes}:${seconds}.${milliseconds}`;
+    }
+
+    document.getElementById('start').onclick = startTimer;
+    document.getElementById('stop').onclick = stopTimer;
+    document.getElementById('reset').onclick = resetTimer;
+  </script>
 </body>
 </html>
