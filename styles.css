@@ -14,8 +14,8 @@
     header {
       text-align: center;
       padding: 2rem 1rem;
-      background: green;
-      color: white;
+      background: white;
+      color: black;
     }
 
     header .photo-container img {
@@ -39,7 +39,7 @@
       flex-wrap: wrap;
       gap: 1rem;
       padding: 1rem;
-      position: sticky;
+      
       top: 0;
       z-index: 100;
     }
@@ -95,8 +95,8 @@
     footer {
       text-align: center;
       padding: 1.5rem;
-      background: green;
-      color: yellow;
+      background: white;
+      color: black;
       margin-top: 2rem;
     }
 
@@ -119,3 +119,4 @@
         padding: 1.5rem;
       }
     }
+
